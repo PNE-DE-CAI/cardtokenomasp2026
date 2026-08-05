@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referência Rápida – Tokens por Turma</title>
+    <!-- Fonte Orbitron para os códigos/números estilizados e Montserrat para o texto geral -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4f6f9;
+            padding: 30px;
+            color: #1a2b4c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+        }
+
+        /* Título Principal */
+        .page-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: #0b2b61;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #80c2f1;
+            margin-bottom: 24px;
+        }
+
+        /* Painel de Cadastro / Gerador */
+        .generator-panel {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #0b2b61;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select {
+            padding: 10px 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: #3b82f6;
+        }
+
+        .btn-generate {
+            background-color: #0b2b61;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            height: 43px;
+        }
+
+        .btn-generate:hover {
+            background-color: #1e3a8a;
+        }
+
+        /* Tabela */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        /* Cabeçalho da Tabela */
+        thead th {
+            background-color: #0b2b61;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            padding: 16px 12px;
+            text-align: left;
+        }
+
+        thead th:first-child {
+            border-top-left-radius: 8px;
+        }
+
+        thead th:last-child {
+            border-top-right-radius: 8px;
+            text-align: center;
+        }
+
+        /* Linhas da Tabela */
+        tbody tr {
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f7fafc;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tbody td {
+            padding: 14px 12px;
+            vertical-align: middle;
+            font-size: 0.9rem;
+            color: #1a2b4c;
+        }
+
+        /* Tag / Badge da Turma */
+        .turma-tag {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 12px;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            min-width: 100px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .tag-blue { background-color: #3b82f6; }
+        .tag-purple { background-color: #8b5cf6; }
+        .tag-orange { background-color: #f59e0b; }
+        .tag-green { background-color: #10b981; }
+
+        /* Coluna Nível / Anos */
+        .nivel-text {
+            font-weight: 600;
+            color: #1a2b4c;
+        }
+
+        /* Coluna Alunos */
+        .alunos-count {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.15rem;
+            color: #0b2b61;
+        }
+
+        /* Coluna Token */
+        .token-text {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 0.95rem;
+            color: #0b2b61;
+            letter-spacing: 1px;
+        }
+
+        /* Coluna Válido Até */
+        .valido-ate {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.05rem;
+            color: #dc2626;
+            letter-spacing: 1px;
+        }
+
+        /* Coluna Gerado Por */
+        .gerado-por {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .gerado-por span {
+            color: #94a3b8;
+        }
+
+        /* Coluna Checkbox Customizado */
+        .checkbox-container {
+            text-align: center;
+        }
+
+        .custom-checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #94a3b8;
+            border-radius: 6px;
+            cursor: pointer;
+            appearance: none;
+            outline: none;
+            transition: all 0.2s;
+            position: relative;
+            background-color: #ffffff;
+        }
+
+        .custom-checkbox:checked {
+            background-color: #0b2b61;
+            border-color: #0b2b61;
+        }
+
+        .custom-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Título -->
+        <h1 class="page-title">REFERÊNCIA RÁPIDA – TOKENS POR TURMA</h1>
+
+        <!-- Painel para Adicionar Novo Token/Turma -->
+        <div class="generator-panel">
+            <div class="form-group">
+                <label for="inputTurma">Nome da Turma</label>
+                <input type="text" id="inputTurma" placeholder="Ex: N4S1-A">
+            </div>
+            <div class="form-group">
+                <label for="inputCor">Cor da Tag</label>
+                <select id="inputCor">
+                    <option value="tag-blue">Azul</option>
+                    <option value="tag-purple">Roxo</option>
+                    <option value="tag-orange">Laranja</option>
+                    <option value="tag-green">Verde</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputNivel">Nível / Anos</label>
+                <input type="text" id="inputNivel" placeholder="Ex: Ensino Superior">
+            </div>
+            <div class="form-group">
+                <label for="inputAlunos">Qtd. Alunos</label>
+                <input type="number" id="inputAlunos" placeholder="Ex: 50">
+            </div>
+            <div class="form-group">
+                <label for="inputToken">Token</label>
+                <input type="text" id="inputToken" placeholder="Ex: BCODE-X">
+            </div>
+            <div class="form-group">
+                <label for="inputValidade">Válido Até</label>
+                <input type="text" id="inputValidade" placeholder="Ex: 10:45">
+            </div>
+            <button class="btn-generate" onclick="adicionarToken()">Gerar Card</button>
+        </div>
+
+        <!-- Tabela -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>TURMA</th>
+                        <th>NÍVEL / ANOS</th>
+                        <th>ALUNOS</th>
+                        <th>TOKEN</th>
+                        <th>VÁLIDO ATÉ</th>
+                        <th>GERADO POR</th>
+                        <th>✓</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-corpo">
+                    <!-- Linha 1 -->
+                    <tr>
+                        <td><span class="turma-tag tag-purple">N1S1-A</span></td>
+                        <td class="nivel-text">Nível 1 — 6º e 7º ano (EF)</td>
+                        <td class="alunos-count">80</td>
+                        <td><span class="token-text">AAAAA-A</span></td>
+                        <td class="valido-ate">09:20</td>
+                        <td class="gerado-por">URE <span>(lote)</span></td>
+                        <td class="checkbox-container">
+                            <input type="checkbox" class="custom-checkbox">
+                        </td>
+                    </tr>
+                    <!-- Linha 2 -->
+                    <tr>
+                        <td><span class="turma-tag tag-blue">N2S1-A</span></td>
+                        <td class="nivel-text">Nível 2 — 8º e 9º ano (EF)</td>
+                        <td class="alunos-count">82</td>
+                        <td><span class="token-text">AAAAA-A</span></td>
+                        <td class="valido-ate">09:20</td>
+                        <td class="gerado-por">URE <span>(lote)</span></td>
+                        <td class="checkbox-container">
+                            <input type="checkbox" class="custom-checkbox">
+                        </td>
+                    </tr>
+                    <!-- Linha 3 -->
+                    <tr>
+                        <td><span class="turma-tag tag-orange">N3S1-A</span></td>
+                        <td class="nivel-text">Nível 3 — Ensino Médio (1ª, 2ª, 3ª)</td>
+                        <td class="alunos-count">100</td>
+                        <td><span class="token-text">AAAAA-A</span></td>
+                        <td class="valido-ate">09:20</td>
+                        <td class="gerado-por">URE <span>(lote)</span></td>
+                        <td class="checkbox-container">
+                            <input type="checkbox" class="custom-checkbox">
+                        </td>
+                    </tr>
+                    <!-- Linha 4 -->
+                    <tr>
+                        <td><span class="turma-tag tag-green">N3S2-A</span></td>
+                        <td class="nivel-text">Nível 3 — Ensino Médio (1ª, 2ª, 3ª)</td>
+                        <td class="alunos-count">19</td>
+                        <td><span class="token-text">AAAAA-A</span></td>
+                        <td class="valido-ate">09:20</td>
+                        <td class="gerado-por">URE <span>(lote)</span></td>
+                        <td class="checkbox-container">
+                            <input type="checkbox" class="custom-checkbox">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function adicionarToken() {
+            // Captura os valores dos inputs
+            const turma = document.getElementById('inputTurma').value || 'TURMA';
+            const cor = document.getElementById('inputCor').value;
+            const nivel = document.getElementById('inputNivel').value || 'Não informado';
+            const alunos = document.getElementById('inputAlunos').value || '0';
+            const token = document.getElementById('inputToken').value || 'TOKEN';
+            const validade = document.getElementById('inputValidade').value || '00:00';
+
+            // Cria uma nova linha (tr) para a tabela
+            const tbody = document.getElementById('tabela-corpo');
+            const novaLinha = document.createElement('tr');
+
+            novaLinha.innerHTML = `
+                <td><span class="turma-tag ${cor}">${turma}</span></td>
+                <td class="nivel-text">${nivel}</td>
+                <td class="alunos-count">${alunos}</td>
+                <td><span class="token-text">${token}</span></td>
+                <td class="valido-ate">${validade}</td>
+                <td class="gerado-por">URE <span>(manual)</span></td>
+                <td class="checkbox-container">
+                    <input type="checkbox" class="custom-checkbox">
+                </td>
+            `;
+
+            // Adiciona a nova linha no topo da tabela
+            tbody.insertBefore(novaLinha, tbody.firstChild);
+
+            // Limpa os campos de texto após gerar
+            document.getElementById('inputTurma').value = '';
+            document.getElementById('inputNivel').value = '';
+            document.getElementById('inputAlunos').value = '';
+            document.getElementById('inputToken').value = '';
+            document.getElementById('inputValidade').value = '';
+        }
+    </script>
+
+</body>
+  </html>
