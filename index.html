@@ -45,16 +45,22 @@
             margin-bottom: 24px;
         }
 
-        /* Painel de Cadastro / Gerador */
-        .generator-panel {
+        /* Painel de Cadastro Múltiplo */
+        .generator-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .turma-row-input {
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 24px;
+            padding: 16px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
             align-items: flex-end;
         }
 
@@ -64,22 +70,23 @@
         }
 
         .form-group label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 800;
             text-transform: uppercase;
             color: #0b2b61;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             letter-spacing: 0.5px;
         }
 
         .form-group input, .form-group select {
-            padding: 10px 12px;
+            padding: 8px 10px;
             border: 2px solid #cbd5e1;
             border-radius: 8px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             outline: none;
             transition: border-color 0.2s;
+            background-color: #ffffff;
         }
 
         .form-group input:focus, .form-group select:focus {
@@ -91,7 +98,7 @@
             color: #ffffff;
             border: none;
             border-radius: 8px;
-            padding: 11px 20px;
+            padding: 10px 20px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 800;
             font-size: 0.85rem;
@@ -99,7 +106,9 @@
             letter-spacing: 1px;
             cursor: pointer;
             transition: background-color 0.2s;
-            height: 43px;
+            height: 38px;
+            grid-column: 1 / -1;
+            width: 100%;
         }
 
         .btn-generate:hover {
@@ -263,38 +272,217 @@
         <!-- Título -->
         <h1 class="page-title">REFERÊNCIA RÁPIDA – TOKENS POR TURMA</h1>
 
-        <!-- Painel para Adicionar Novo Token/Turma -->
-        <div class="generator-panel">
-            <div class="form-group">
-                <label for="inputTurma">Nome da Turma</label>
-                <input type="text" id="inputTurma" placeholder="Ex: N4S1-A">
+        <!-- Painel de Cadastro Simultâneo (4 Turmas) -->
+        <div class="generator-container">
+            <!-- Turma 1 -->
+            <div class="turma-row-input">
+                <div class="form-group">
+                    <label>Turma 1</label>
+                    <select id="turma1-nome">
+                        <option value="N1S1-A">N1S1-A</option>
+                        <option value="N2S1-A">N2S1-A</option>
+                        <option value="N3S1-A">N3S1-A</option>
+                        <option value="N3S2-A">N3S2-A</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cor</label>
+                    <select id="turma1-cor">
+                        <option value="tag-purple">Roxo</option>
+                        <option value="tag-blue">Azul</option>
+                        <option value="tag-orange">Laranja</option>
+                        <option value="tag-green">Verde</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nível / Anos</label>
+                    <select id="turma1-nivel">
+                        <option value="Nível 1 — 6º e 7º ano (EF)">Nível 1 — 6º e 7º ano (EF)</option>
+                        <option value="Nível 2 — 8º e 9º ano (EF)">Nível 2 — 8º e 9º ano (EF)</option>
+                        <option value="Nível 3 — Ensino Médio (1ª, 2ª, 3ª)">Nível 3 — Ensino Médio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Alunos</label>
+                    <select id="turma1-alunos">
+                        <option value="80">80</option>
+                        <option value="82">82</option>
+                        <option value="100">100</option>
+                        <option value="19">19</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Token</label>
+                    <input type="text" id="turma1-token" placeholder="Digite o token">
+                </div>
+                <div class="form-group">
+                    <label>Validade</label>
+                    <select id="turma1-validade">
+                        <option value="09:20">09:20</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:30">11:30</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="inputCor">Cor da Tag</label>
-                <select id="inputCor">
-                    <option value="tag-blue">Azul</option>
-                    <option value="tag-purple">Roxo</option>
-                    <option value="tag-orange">Laranja</option>
-                    <option value="tag-green">Verde</option>
-                </select>
+
+            <!-- Turma 2 -->
+            <div class="turma-row-input">
+                <div class="form-group">
+                    <label>Turma 2</label>
+                    <select id="turma2-nome">
+                        <option value="N2S1-A">N2S1-A</option>
+                        <option value="N1S1-A">N1S1-A</option>
+                        <option value="N3S1-A">N3S1-A</option>
+                        <option value="N3S2-A">N3S2-A</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cor</label>
+                    <select id="turma2-cor">
+                        <option value="tag-blue">Azul</option>
+                        <option value="tag-purple">Roxo</option>
+                        <option value="tag-orange">Laranja</option>
+                        <option value="tag-green">Verde</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nível / Anos</label>
+                    <select id="turma2-nivel">
+                        <option value="Nível 2 — 8º e 9º ano (EF)">Nível 2 — 8º e 9º ano (EF)</option>
+                        <option value="Nível 1 — 6º e 7º ano (EF)">Nível 1 — 6º e 7º ano (EF)</option>
+                        <option value="Nível 3 — Ensino Médio (1ª, 2ª, 3ª)">Nível 3 — Ensino Médio</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Alunos</label>
+                    <select id="turma2-alunos">
+                        <option value="82">82</option>
+                        <option value="80">80</option>
+                        <option value="100">100</option>
+                        <option value="19">19</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Token</label>
+                    <input type="text" id="turma2-token" placeholder="Digite o token">
+                </div>
+                <div class="form-group">
+                    <label>Validade</label>
+                    <select id="turma2-validade">
+                        <option value="09:20">09:20</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:30">11:30</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="inputNivel">Nível / Anos</label>
-                <input type="text" id="inputNivel" placeholder="Ex: Ensino Superior">
+
+            <!-- Turma 3 -->
+            <div class="turma-row-input">
+                <div class="form-group">
+                    <label>Turma 3</label>
+                    <select id="turma3-nome">
+                        <option value="N3S1-A">N3S1-A</option>
+                        <option value="N1S1-A">N1S1-A</option>
+                        <option value="N2S1-A">N2S1-A</option>
+                        <option value="N3S2-A">N3S2-A</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cor</label>
+                    <select id="turma3-cor">
+                        <option value="tag-orange">Laranja</option>
+                        <option value="tag-blue">Azul</option>
+                        <option value="tag-purple">Roxo</option>
+                        <option value="tag-green">Verde</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nível / Anos</label>
+                    <select id="turma3-nivel">
+                        <option value="Nível 3 — Ensino Médio (1ª, 2ª, 3ª)">Nível 3 — Ensino Médio</option>
+                        <option value="Nível 1 — 6º e 7º ano (EF)">Nível 1 — 6º e 7º ano (EF)</option>
+                        <option value="Nível 2 — 8º e 9º ano (EF)">Nível 2 — 8º e 9º ano (EF)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Alunos</label>
+                    <select id="turma3-alunos">
+                        <option value="100">100</option>
+                        <option value="80">80</option>
+                        <option value="82">82</option>
+                        <option value="19">19</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Token</label>
+                    <input type="text" id="turma3-token" placeholder="Digite o token">
+                </div>
+                <div class="form-group">
+                    <label>Validade</label>
+                    <select id="turma3-validade">
+                        <option value="09:20">09:20</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:30">11:30</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="inputAlunos">Qtd. Alunos</label>
-                <input type="number" id="inputAlunos" placeholder="Ex: 50">
+
+            <!-- Turma 4 -->
+            <div class="turma-row-input">
+                <div class="form-group">
+                    <label>Turma 4</label>
+                    <select id="turma4-nome">
+                        <option value="N3S2-A">N3S2-A</option>
+                        <option value="N1S1-A">N1S1-A</option>
+                        <option value="N2S1-A">N2S1-A</option>
+                        <option value="N3S1-A">N3S1-A</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cor</label>
+                    <select id="turma4-cor">
+                        <option value="tag-green">Verde</option>
+                        <option value="tag-blue">Azul</option>
+                        <option value="tag-purple">Roxo</option>
+                        <option value="tag-orange">Laranja</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nível / Anos</label>
+                    <select id="turma4-nivel">
+                        <option value="Nível 3 — Ensino Médio (1ª, 2ª, 3ª)">Nível 3 — Ensino Médio</option>
+                        <option value="Nível 1 — 6º e 7º ano (EF)">Nível 1 — 6º e 7º ano (EF)</option>
+                        <option value="Nível 2 — 8º e 9º ano (EF)">Nível 2 — 8º e 9º ano (EF)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Alunos</label>
+                    <select id="turma4-alunos">
+                        <option value="19">19</option>
+                        <option value="80">80</option>
+                        <option value="82">82</option>
+                        <option value="100">100</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Token</label>
+                    <input type="text" id="turma4-token" placeholder="Digite o token">
+                </div>
+                <div class="form-group">
+                    <label>Validade</label>
+                    <select id="turma4-validade">
+                        <option value="09:20">09:20</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:30">11:30</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="inputToken">Token</label>
-                <input type="text" id="inputToken" placeholder="Ex: BCODE-X">
-            </div>
-            <div class="form-group">
-                <label for="inputValidade">Válido Até</label>
-                <input type="text" id="inputValidade" placeholder="Ex: 10:45">
-            </div>
-            <button class="btn-generate" onclick="adicionarToken()">Gerar Card</button>
+
+            <button class="btn-generate" onclick="gerarTodasTurmas()">Gerar Todas as 4 Turmas</button>
         </div>
 
         <!-- Tabela -->
@@ -312,96 +500,43 @@
                     </tr>
                 </thead>
                 <tbody id="tabela-corpo">
-                    <!-- Linha 1 -->
-                    <tr>
-                        <td><span class="turma-tag tag-purple">N1S1-A</span></td>
-                        <td class="nivel-text">Nível 1 — 6º e 7º ano (EF)</td>
-                        <td class="alunos-count">80</td>
-                        <td><span class="token-text">AAAAA-A</span></td>
-                        <td class="valido-ate">09:20</td>
-                        <td class="gerado-por">URE <span>(lote)</span></td>
-                        <td class="checkbox-container">
-                            <input type="checkbox" class="custom-checkbox">
-                        </td>
-                    </tr>
-                    <!-- Linha 2 -->
-                    <tr>
-                        <td><span class="turma-tag tag-blue">N2S1-A</span></td>
-                        <td class="nivel-text">Nível 2 — 8º e 9º ano (EF)</td>
-                        <td class="alunos-count">82</td>
-                        <td><span class="token-text">AAAAA-A</span></td>
-                        <td class="valido-ate">09:20</td>
-                        <td class="gerado-por">URE <span>(lote)</span></td>
-                        <td class="checkbox-container">
-                            <input type="checkbox" class="custom-checkbox">
-                        </td>
-                    </tr>
-                    <!-- Linha 3 -->
-                    <tr>
-                        <td><span class="turma-tag tag-orange">N3S1-A</span></td>
-                        <td class="nivel-text">Nível 3 — Ensino Médio (1ª, 2ª, 3ª)</td>
-                        <td class="alunos-count">100</td>
-                        <td><span class="token-text">AAAAA-A</span></td>
-                        <td class="valido-ate">09:20</td>
-                        <td class="gerado-por">URE <span>(lote)</span></td>
-                        <td class="checkbox-container">
-                            <input type="checkbox" class="custom-checkbox">
-                        </td>
-                    </tr>
-                    <!-- Linha 4 -->
-                    <tr>
-                        <td><span class="turma-tag tag-green">N3S2-A</span></td>
-                        <td class="nivel-text">Nível 3 — Ensino Médio (1ª, 2ª, 3ª)</td>
-                        <td class="alunos-count">19</td>
-                        <td><span class="token-text">AAAAA-A</span></td>
-                        <td class="valido-ate">09:20</td>
-                        <td class="gerado-por">URE <span>(lote)</span></td>
-                        <td class="checkbox-container">
-                            <input type="checkbox" class="custom-checkbox">
-                        </td>
-                    </tr>
+                    <!-- Linhas geradas via script ou vazias inicialmente -->
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        function adicionarToken() {
-            // Captura os valores dos inputs
-            const turma = document.getElementById('inputTurma').value || 'TURMA';
-            const cor = document.getElementById('inputCor').value;
-            const nivel = document.getElementById('inputNivel').value || 'Não informado';
-            const alunos = document.getElementById('inputAlunos').value || '0';
-            const token = document.getElementById('inputToken').value || 'TOKEN';
-            const validade = document.getElementById('inputValidade').value || '00:00';
-
-            // Cria uma nova linha (tr) para a tabela
+        function gerarTodasTurmas() {
             const tbody = document.getElementById('tabela-corpo');
-            const novaLinha = document.createElement('tr');
+            tbody.innerHTML = ''; // Limpa a tabela para exibir o novo lote
 
-            novaLinha.innerHTML = `
-                <td><span class="turma-tag ${cor}">${turma}</span></td>
-                <td class="nivel-text">${nivel}</td>
-                <td class="alunos-count">${alunos}</td>
-                <td><span class="token-text">${token}</span></td>
-                <td class="valido-ate">${validade}</td>
-                <td class="gerado-por">URE <span>(manual)</span></td>
-                <td class="checkbox-container">
-                    <input type="checkbox" class="custom-checkbox">
-                </td>
-            `;
+            // Loop para as 4 turmas
+            for (let i = 1; i <= 4; i++) {
+                const turma = document.getElementById(`turma${i}-nome`).value;
+                const cor = document.getElementById(`turma${i}-cor`).value;
+                const nivel = document.getElementById(`turma${i}-nivel`).value;
+                const alunos = document.getElementById(`turma${i}-alunos`).value;
+                const token = document.getElementById(`turma${i}-token`).value || '-----';
+                const validade = document.getElementById(`turma${i}-validade`).value;
 
-            // Adiciona a nova linha no topo da tabela
-            tbody.insertBefore(novaLinha, tbody.firstChild);
+                const novaLinha = document.createElement('tr');
+                novaLinha.innerHTML = `
+                    <td><span class="turma-tag ${cor}">${turma}</span></td>
+                    <td class="nivel-text">${nivel}</td>
+                    <td class="alunos-count">${alunos}</td>
+                    <td><span class="token-text">${token}</span></td>
+                    <td class="valido-ate">${validade}</td>
+                    <td class="gerado-por">URE <span>(lote)</span></td>
+                    <td class="checkbox-container">
+                        <input type="checkbox" class="custom-checkbox">
+                    </td>
+                `;
 
-            // Limpa os campos de texto após gerar
-            document.getElementById('inputTurma').value = '';
-            document.getElementById('inputNivel').value = '';
-            document.getElementById('inputAlunos').value = '';
-            document.getElementById('inputToken').value = '';
-            document.getElementById('inputValidade').value = '';
+                tbody.appendChild(novaLinha);
+            }
         }
     </script>
 
 </body>
-  </html>
+</html>
